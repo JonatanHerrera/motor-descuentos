@@ -1,7 +1,9 @@
 import React, { useState } from "react";
+import loginService from "../../services/login";
 
-const Login = () => {
+const Login = ({ onSuccessfulLogin }) => {
   // State to store the input values
+ // const [user, setUser] = useState("");
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
@@ -16,39 +18,57 @@ const Login = () => {
   };
 
   // Function to handle form submission
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault(); // Prevents the default form submission behavior
-
-    // Log the entered values to the console
-    console.log("Submitted username:", username);
-    console.log("Submitted password:", password);
-
-    // You can add additional logic here, like sending the data to a server
+    const data = {
+      marca: username,
+      password: password,
+    };
+    try {
+      const newUser = await loginService.login(data);
+      if (newUser.token !== "") {
+        window.localStorage.setItem(
+          'loggedAppUser',JSON.stringify(newUser)        );
+        //setUser(newUser);
+        setUsername("");
+        setPassword("");
+        onSuccessfulLogin();
+      } else {
+        alert("Usuario o Contraseña Invalida");
+        setPassword("");
+      }
+    } catch (e) {
+      console.log(e);
+    }
   };
 
   return (
     <div>
       <form onSubmit={handleSubmit}>
-        <label>
-          Usuario
-          <input
-            type="text"
-            name="username"
-            value={username}
-            onChange={handleInputChange}
-          />
-        </label>
-        <br />
-        <label>
-          Contraseña
-          <input
-            type="password"
-            name="password"
-            value={password}
-            onChange={handleInputChange}
-          />
-        </label>
-        <br />
+        <div>
+          <label>
+            Usuario
+            <input
+              type="text"
+              name="username"
+              placeholder="Usuario"
+              value={username}
+              onChange={handleInputChange}
+            />
+          </label>
+        </div>
+        <div>
+          <label>
+            Contraseña
+            <input
+              type="password"
+              name="password"
+              placeholder="Contraseña"
+              value={password}
+              onChange={handleInputChange}
+            />
+          </label>
+        </div>
         <button type="submit">Iniciar</button>
       </form>
     </div>
