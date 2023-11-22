@@ -3,7 +3,7 @@ import loginService from "../../services/login";
 
 const Login = ({ onSuccessfulLogin }) => {
   // State to store the input values
- // const [user, setUser] = useState("");
+  // const [user, setUser] = useState("");
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
@@ -27,8 +27,7 @@ const Login = ({ onSuccessfulLogin }) => {
     try {
       const newUser = await loginService.login(data);
       if (newUser.token !== "") {
-        window.localStorage.setItem(
-          'loggedAppUser',JSON.stringify(newUser)        );
+        window.localStorage.setItem("loggedAppUser", JSON.stringify(newUser));
         //setUser(newUser);
         setUsername("");
         setPassword("");

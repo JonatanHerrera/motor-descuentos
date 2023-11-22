@@ -1,22 +1,39 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import discountsService from "../../services/discounts";
 
-const Form = ({ onLogOut ,user}) => {
+const Form = ({ onLogOut }) => {
   // State to store the input values
   const [document, setDocument] = useState("");
+  const [activeBrand, setActiveBrand] = useState();
 
+  useEffect(() => {
+    const loggedUser = window.localStorage.getItem("loggedAppUser");
+    if (loggedUser) {
+      setActiveBrand(JSON.parse(loggedUser));
+    }
+  }, []);
   // Function to handle input changes
   const handleInputChange = (event) => {
-    const { doc, value } = event.target;
-
+    const { value } = event.target;
     setDocument(value);
   };
 
   // Function to handle form submission
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault(); // Prevents the default form submission behavior
-    console.log(user);
-    // Log the entered values to the console
-    console.log("Submitted document:", document);
+
+    const userInfo = {
+      client: document,
+      brand: activeBrand.marca,
+      token: activeBrand.token,
+    };
+
+    try {
+      const discounts = await discountsService.getDiscouts(userInfo);
+      console.log(discounts);
+    } catch (e) {
+      console.log(e);
+    }
 
     // You can add additional logic here, like sending the data to a server
   };

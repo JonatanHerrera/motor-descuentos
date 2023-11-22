@@ -18,11 +18,15 @@ const headers = {
 };
 
 const login = async (Credentials) => {
-  const { data } = await axios.post(baseUrl, Credentials, {
-    headers: headers,
-  });
+  try {
+    const { data } = await axios.post(baseUrl, Credentials, {
+      headers: headers,
+    });
 
-  return data;
+    return data;
+  } catch (e) {
+    console.log(e);
+  }
 };
 
 export default { login };

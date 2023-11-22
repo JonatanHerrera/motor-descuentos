@@ -4,12 +4,12 @@ import { useEffect, useState } from "react";
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [user, setUser] = useState('')
+ // const [user, setUser] = useState('')
 
   useEffect(() => {
     const loggedUserJSON = window.localStorage.getItem("loggedAppUser");
     if (loggedUserJSON) {
-      setUser( JSON.parse(loggedUserJSON))
+      
       setIsLoggedIn(true);
     }
   }, []);
@@ -26,7 +26,7 @@ function App() {
   return (
     <div className="App">
       {isLoggedIn ? (
-        <Form onLogOut = {handleLogOut} user = {user}/>
+        <Form onLogOut = {handleLogOut} />
       ) : (
         <Login onSuccessfulLogin={handleSuccessfulLogin} />
       )}
