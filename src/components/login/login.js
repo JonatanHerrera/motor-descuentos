@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import loginService from "../../services/login";
-import './Login.css'; // Importa el archivo de estilos
+import "./Login.css"; // Importa el archivo de estilos
+import "bootstrap/dist/css/bootstrap.min.css";
 
 const Login = ({ onSuccessfulLogin }) => {
   // State to store the input values
@@ -43,36 +44,38 @@ const Login = ({ onSuccessfulLogin }) => {
   };
 
   return (
-    <div>
-      <form onSubmit={handleSubmit}>
-        <div>
-          <label>
-            Usuario
-            <input
-              type="text"
-              name="username"
-              placeholder="Usuario"
-              value={username}
-              className="inputField"
-              onChange={handleInputChange}
-            />
-          </label>
+    <div className="container mt-5 form-signin d-flex justify-content-center align-items-center vh-100  " >
+      <div className="">
+      <form onSubmit={handleSubmit} className="needs-validation" noValidate>
+        <div className="form-floating mb-3 ">
+          <input
+            className="form-control"
+            id="floatingInput"  
+            type="text"
+            name="username"
+            placeholder="Usuario"
+            value={username}
+            onChange={handleInputChange}
+          />
+          <label htmlFor="floatingInput">Usuario</label>
         </div>
-        <div>
-          <label>
-            Contraseña
-            <input
-              type="password"
-              name="password"
-              placeholder="Contraseña"
-              value={password}
-              className="inputField"
-              onChange={handleInputChange}
-            />
-          </label>
+
+        <div className="form-floating mb-3">
+          <input
+            className="form-control"
+            id="floatingPassword"
+            type="password"
+            name="password"
+            placeholder="Contraseña"
+            value={password}
+            onChange={handleInputChange}
+          />
+          <label htmlFor="floatingPassword">Contraseña</label>
         </div>
-        <button type="submit">Iniciar</button>
+        <button type="submit"  className="btn btn-primary">Iniciar</button>
       </form>
+      </div>
+      
     </div>
   );
 };
