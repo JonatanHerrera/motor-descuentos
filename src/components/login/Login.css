@@ -1,0 +1,19 @@
+/* Login.css */
+.inputField {
+    margin: 10px;
+    /* Agrega más estilos según tus necesidades */
+  }
+  
+  .submitButton {
+    background-color: blue;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    margin : 10px;
+    /* Agrega más estilos según tus necesidades */
+  }
+
+  .label{
+    margin: 10px;
+  }

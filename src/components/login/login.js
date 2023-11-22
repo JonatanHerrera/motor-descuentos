@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import loginService from "../../services/login";
+import './Login.css'; // Importa el archivo de estilos
 
 const Login = ({ onSuccessfulLogin }) => {
   // State to store the input values
@@ -52,6 +53,7 @@ const Login = ({ onSuccessfulLogin }) => {
               name="username"
               placeholder="Usuario"
               value={username}
+              className="inputField"
               onChange={handleInputChange}
             />
           </label>
@@ -64,6 +66,7 @@ const Login = ({ onSuccessfulLogin }) => {
               name="password"
               placeholder="Contraseña"
               value={password}
+              className="inputField"
               onChange={handleInputChange}
             />
           </label>

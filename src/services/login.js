@@ -29,4 +29,4 @@ const login = async (Credentials) => {
   }
 };
 
-export default { login };
+export default { login }

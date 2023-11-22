@@ -1,10 +1,13 @@
 import React, { useState, useEffect } from "react";
 import discountsService from "../../services/discounts";
+import DiscountList from "../discounts/DiscountList";
+import { Simulate } from "react-dom/test-utils";
 
 const Form = ({ onLogOut }) => {
   // State to store the input values
   const [document, setDocument] = useState("");
   const [activeBrand, setActiveBrand] = useState();
+  const [discountList, setDiscountList] = useState([]);
 
   useEffect(() => {
     const loggedUser = window.localStorage.getItem("loggedAppUser");
@@ -30,7 +33,7 @@ const Form = ({ onLogOut }) => {
 
     try {
       const discounts = await discountsService.getDiscouts(userInfo);
-      console.log(discounts);
+      setDiscountList(discounts);
     } catch (e) {
       console.log(e);
     }
@@ -44,20 +47,28 @@ const Form = ({ onLogOut }) => {
 
   return (
     <div>
+      <div>
+        <button onClick={handleLogOut}>Cerrar sesión</button>
+      </div>
       <form onSubmit={handleSubmit}>
-        <label>
+        <label className="label">
           Documento cliente
           <input
             type="text"
             name="clientDocument"
+            placeholder="Numero identificacion"
             value={document}
+            className="inputField"
             onChange={handleInputChange}
           />
         </label>
-        <button type="submit">Consultar</button>
+        <button type="submit" className="submitButton">
+          {" "}
+          Consultar
+        </button>
       </form>
       <div>
-        <button onClick={handleLogOut}>Cerrar sesión</button>
+        <DiscountList discountList={discountList} />
       </div>
     </div>
   );

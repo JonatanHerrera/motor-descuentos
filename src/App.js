@@ -1,6 +1,7 @@
-import Login from "./components/login/login.js";
-import Form from "./components/form/form.js";
+import Login from "./components/login/Login.js";
+import Form from "./components/form/Form.js";
 import { useEffect, useState } from "react";
+
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -30,6 +31,7 @@ function App() {
       ) : (
         <Login onSuccessfulLogin={handleSuccessfulLogin} />
       )}
+      
     </div>
   );
 }
