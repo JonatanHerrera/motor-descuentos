@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import loginService from "../../services/login";
+import logo from "../../Images/logo.svg";
 import "./Login.css"; // Importa el archivo de estilos
 import "bootstrap/dist/css/bootstrap.min.css";
 
@@ -44,13 +45,22 @@ const Login = ({ onSuccessfulLogin }) => {
   };
 
   return (
-    <div className="container mt-5 form-signin d-flex justify-content-center align-items-center vh-100  " >
-      <div className="">
+    <div className="form-signin w-100  m-auto">
       <form onSubmit={handleSubmit} className="needs-validation" noValidate>
-        <div className="form-floating mb-3 ">
+        <div className="row"> 
+          <img
+            className="mb-5"
+            src={logo}
+            alt="logo-login"
+            height="100"
+          ></img>
+        </div>
+
+        <h5 className=" mb-2 fw-normal">Por favor inicie sesion</h5>
+        <div className="form-floating mb-3">
           <input
             className="form-control"
-            id="floatingInput"  
+            id="floatingInput"
             type="text"
             name="username"
             placeholder="Usuario"
@@ -72,10 +82,14 @@ const Login = ({ onSuccessfulLogin }) => {
           />
           <label htmlFor="floatingPassword">Contraseña</label>
         </div>
-        <button type="submit"  className="btn btn-primary">Iniciar</button>
+        <div className="container">
+          <div className="row">
+            <button type="submit" className="btn btn-primary">
+              Iniciar
+            </button>
+          </div>
+        </div>
       </form>
-      </div>
-      
     </div>
   );
 };

@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
 import discountsService from "../../services/discounts";
 import DiscountList from "../discounts/DiscountList";
-import { Simulate } from "react-dom/test-utils";
+import "bootstrap/dist/css/bootstrap.min.css";
+import "./Form.css";
 
 const Form = ({ onLogOut }) => {
   // State to store the input values
@@ -46,28 +47,33 @@ const Form = ({ onLogOut }) => {
   };
 
   return (
-    <div>
-      <div>
-        <button onClick={handleLogOut}>Cerrar sesión</button>
-      </div>
-      <form onSubmit={handleSubmit}>
-        <label className="label">
-          Documento cliente
-          <input
-            type="text"
-            name="clientDocument"
-            placeholder="Numero identificacion"
-            value={document}
-            className="inputField"
-            onChange={handleInputChange}
-          />
-        </label>
-        <button type="submit" className="submitButton">
-          {" "}
-          Consultar
+    <div className="">
+      <div className="dropdown position-fixed top-0 end-0 mt-3 me-3 bd-mode-toggle">
+        <button className="btn btn-secondary" onClick={handleLogOut}>
+          Cerrar sesión
         </button>
-      </form>
-      <div>
+      </div>
+      <div className="container">
+        <div className="">
+          <form onSubmit={handleSubmit} className="needs-validation" noValidate>
+            <div className="form-floating mb-3">
+              <input
+                type="text"
+                name="clientDocument"
+                value={document}
+                className="form-control"
+                onChange={handleInputChange}
+              />
+              <label className="floatingInput">Documento cliente</label>
+            </div>
+
+            <button type="submit" className="btn btn-primary">
+              Consultar
+            </button>
+          </form>
+        </div>
+      </div>
+      <div className="mt-5 pt-3 discounts">
         <DiscountList discountList={discountList} />
       </div>
     </div>
