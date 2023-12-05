@@ -6,8 +6,10 @@ const DiscountList = ({ discountList }) => {
   return (
     <div>
       <ul>
-        {discountList.map((discount, index) => (
-          <li key={index}>{discount}</li>
+        {list.map((discount, index) => (
+          <li key={index}>
+            {discount.Descuento} - {discount.Descripcion_Descuento}
+          </li>
         ))}
       </ul>
     </div>

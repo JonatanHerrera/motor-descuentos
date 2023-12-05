@@ -17,7 +17,7 @@ const headers = {
   // Add other headers as needed
 };
 
-const login = async (Credentials) => {
+async function login (Credentials) {
   try {
     const { data } = await axios.post(baseUrl, Credentials, {
       headers: headers,
@@ -29,4 +29,4 @@ const login = async (Credentials) => {
   }
 };
 
-export default { login }
+export default login

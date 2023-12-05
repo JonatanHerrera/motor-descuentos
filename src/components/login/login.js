@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import loginService from "../../services/login";
+import login from "../../services/login";
 import logo from "../../Images/logo.svg";
 import "./Login.css"; // Importa el archivo de estilos
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -28,7 +28,7 @@ const Login = ({ onSuccessfulLogin }) => {
       password: password,
     };
     try {
-      const newUser = await loginService.login(data);
+      const newUser = await login(data);
       if (newUser.token !== "") {
         window.localStorage.setItem("loggedAppUser", JSON.stringify(newUser));
         //setUser(newUser);

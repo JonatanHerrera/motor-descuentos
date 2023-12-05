@@ -22,18 +22,14 @@ function App() {
     setIsLoggedIn(false);
     window.localStorage.removeItem("loggedAppUser");
   };
- 
+
   return (
     <div className="container justify-content-center align-items-center d-flex vh-100">
-      
-        
-          {isLoggedIn ? (
-            <Form  onLogOut={handleLogOut} />
-          ) : (
-            <Login onSuccessfulLogin={handleSuccessfulLogin} />
-          )}
-        
-      
+      {isLoggedIn ? (
+        <Form onLogOut={handleLogOut} />
+      ) : (
+        <Login onSuccessfulLogin={handleSuccessfulLogin} />
+      )}
     </div>
   );
 }

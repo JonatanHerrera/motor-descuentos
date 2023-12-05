@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import discountsService from "../../services/discounts";
+import getDiscouts  from "../../services/discounts";
 import DiscountList from "../discounts/DiscountList";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./Form.css";
@@ -30,16 +30,14 @@ const Form = ({ onLogOut }) => {
       client: document,
       brand: activeBrand.marca,
       token: activeBrand.token,
-    };
-
+    };   
     try {
-      const discounts = await discountsService.getDiscouts(userInfo);
-      setDiscountList(discounts);
+      const discounts = await getDiscouts(userInfo);      
+      setDiscountList(discounts);     
     } catch (e) {
       console.log(e);
     }
 
-    // You can add additional logic here, like sending the data to a server
   };
 
   const handleLogOut = () => {
@@ -74,7 +72,7 @@ const Form = ({ onLogOut }) => {
         </div>
       </div>
       <div className="mt-5 pt-3 discounts">
-        <DiscountList discountList={discountList} />
+      <DiscountList discountList={discountList} />
       </div>
     </div>
   );
