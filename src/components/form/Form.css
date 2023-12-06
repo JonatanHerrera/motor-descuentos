@@ -1,14 +1,9 @@
-.form-container{
-  max-width: 600px;
-  min-width: 600px;
-
-  
+.discounts {
+  /* border: 2px solid rgb(157, 153, 153); 
+  border-radius: 20px;
+*/
 }
 
-.discounts{
-  border: 2px solid rgb(157, 153, 153); /* Borde negro de 2 píxeles */
-  border-radius: 10px; /* Bordes redondeados de 10 píxeles */
-  z-index: -1;
-  height: 200px;
-  width: 450px;
-  }
+.form-client {
+ max-width: 600px;
+}

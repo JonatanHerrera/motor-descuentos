@@ -1,5 +1,6 @@
 import Login from "./components/login/Login.js";
 import Form from "./components/form/Form.js";
+import Logout from "./components/logout/Logout.js";
 import { useEffect, useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 
@@ -25,9 +26,12 @@ function App() {
 
   return (
     <div className="container justify-content-center align-items-center d-flex vh-100">
-      {isLoggedIn ? (
-        <Form onLogOut={handleLogOut} />
-      ) : (
+    {isLoggedIn ? (      
+        <div>
+          <Form />
+          <Logout onLogOut={handleLogOut} />
+        </div>
+      ) : (       
         <Login onSuccessfulLogin={handleSuccessfulLogin} />
       )}
     </div>

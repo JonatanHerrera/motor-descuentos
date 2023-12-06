@@ -1,10 +1,7 @@
 import axios from "axios";
 
-const baseUrl = "http://localhost:8080/discountsByClientDocument";
-const username = "Descuentos"; // Reemplaza con tu nombre de usuario
-const password = "Descuentos123"; // Reemplaza con tu contraseña
-
-const str = `${username}:${password}`;
+const baseUrl = process.env.REACT_APP_URL_BASE + "/discountsByClientDocument";
+const str = process.env.REACT_APP_AUTH_API;
 const buffer = new TextEncoder().encode(str);
 const base64Encoded = btoa(String.fromCharCode(...new Uint8Array(buffer)));
 const authHeader = `Basic ${base64Encoded}`;
@@ -23,8 +20,14 @@ async function getDiscouts(userInfo) {
     if (data.length > 0) {
       return data;
     } else {
-      const R = {Marca : "",Cliente:"", Fecha_Consulta:"",Descuento:"No se encontraron descuentos asociados al cliente",Descripcion_Descuento:""}
-    
+      const R = {
+        Marca: "",
+        Cliente: "",
+        Fecha_Consulta: "",
+        Descuento: "No se encontraron descuentos asociados al cliente",
+        Descripcion_Descuento: "",
+      };
+
       return [R];
     }
 

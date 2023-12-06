@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from "react";
-import getDiscouts  from "../../services/discounts";
+import getDiscouts from "../../services/discounts";
+import logo from "../../Images/logo.svg";
 import DiscountList from "../discounts/DiscountList";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./Form.css";
 
-const Form = ({ onLogOut }) => {
+const Form = () => {
   // State to store the input values
   const [document, setDocument] = useState("");
   const [activeBrand, setActiveBrand] = useState();
@@ -30,49 +31,50 @@ const Form = ({ onLogOut }) => {
       client: document,
       brand: activeBrand.marca,
       token: activeBrand.token,
-    };   
+    };
     try {
-      const discounts = await getDiscouts(userInfo);      
-      setDiscountList(discounts);     
+      const discounts = await getDiscouts(userInfo);
+      setDiscountList(discounts);
     } catch (e) {
       console.log(e);
     }
-
-  };
-
-  const handleLogOut = () => {
-    onLogOut();
   };
 
   return (
-    <div className="">
-      <div className="dropdown position-fixed top-0 end-0 mt-3 me-3 bd-mode-toggle">
-        <button className="btn btn-secondary" onClick={handleLogOut}>
-          Cerrar sesión
-        </button>
+    <div className="container ">
+      <div className="row">
+        <img className="mb-5" src={logo} alt="logo-login" height="100"></img>
       </div>
-      <div className="container">
-        <div className="">
-          <form onSubmit={handleSubmit} className="needs-validation" noValidate>
-            <div className="form-floating mb-3">
-              <input
-                type="text"
-                name="clientDocument"
-                value={document}
-                className="form-control"
-                onChange={handleInputChange}
-              />
-              <label className="floatingInput">Documento cliente</label>
-            </div>
+      <div className="row ">
+        <form onSubmit={handleSubmit} className="needs-validation" noValidate>
+          <div className="form-floating mb-3">
+            <input
+              type="text"
+              name="clientDocument"
+              value={document}
+              className="form-control"
+              onChange={handleInputChange}
+            />
+            <label className="floatingInput">
+              Ingresa aquí el documento del cliente
+            </label>
+          </div>
 
-            <button type="submit" className="btn btn-primary">
-              Consultar
-            </button>
-          </form>
-        </div>
+          <button type="submit" className="btn btn-primary">
+            Consultar
+          </button>
+        </form>
       </div>
-      <div className="mt-5 pt-3 discounts">
-      <DiscountList discountList={discountList} />
+      <div className="row">
+      <p className="mt-4">
+        Aquí aparecerán los descuentos disponible para el cliente. Recuerda
+        siempre aplicar el mayor de todos.
+      </p>
+
+      </div>
+     
+      <div className="col mt-5 pt-3 discounts">
+        <DiscountList discountList={discountList} />
       </div>
     </div>
   );

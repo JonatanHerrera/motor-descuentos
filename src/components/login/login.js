@@ -9,6 +9,7 @@ const Login = ({ onSuccessfulLogin }) => {
   // const [user, setUser] = useState("");
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [error, setError] = useState(false);
 
   // Function to handle input changes
   const handleInputChange = (event) => {
@@ -36,27 +37,25 @@ const Login = ({ onSuccessfulLogin }) => {
         setPassword("");
         onSuccessfulLogin();
       } else {
-        alert("Usuario o Contraseña Invalida");
         setPassword("");
+        setError(true);
       }
     } catch (e) {
       console.log(e);
     }
   };
 
+  const isFormValid =
+    username.trim() !== "" && password.trim() !== "" && password.length > 2;
+
   return (
-    <div className="form-signin w-100  m-auto">
+    <div className="form-signin w-100  m-auto rounded-5 border border-3">
       <form onSubmit={handleSubmit} className="needs-validation" noValidate>
-        <div className="row"> 
-          <img
-            className="mb-5"
-            src={logo}
-            alt="logo-login"
-            height="100"
-          ></img>
+        <div className="row">
+          <img className="mb-5" src={logo} alt="logo-login" height="100"></img>
         </div>
 
-        <h5 className=" mb-2 fw-normal">Por favor inicie sesion</h5>
+        <h5 className=" mb-2 fw-normal">Bienvenido, por favor inicia sesión</h5>
         <div className="form-floating mb-3">
           <input
             className="form-control"
@@ -84,10 +83,21 @@ const Login = ({ onSuccessfulLogin }) => {
         </div>
         <div className="container">
           <div className="row">
-            <button type="submit" className="btn btn-primary">
+            <div className="alert alert-danger" role="alert" hidden={!error}>
+              Usuario o Contraseña Inválida
+            </div>
+            <button
+              type="submit"
+              className="btn btn-primary"
+              disabled={!isFormValid}
+            >
               Iniciar
             </button>
+
           </div>
+        </div>
+        <div className="container">
+        <p className=" mt-4">¿Olvidaste tu contraseña?</p>
         </div>
       </form>
     </div>

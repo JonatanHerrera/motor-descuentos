@@ -1,10 +1,8 @@
 import axios from "axios";
 
-const baseUrl = "http://localhost:8080/login";
-const username = "Descuentos"; // Reemplaza con tu nombre de usuario
-const password = "Descuentos123"; // Reemplaza con tu contraseña
+const baseUrl = process.env.REACT_APP_URL_BASE + "/login";
 
-const str = `${username}:${password}`;
+const str = process.env.REACT_APP_AUTH_API;
 const buffer = new TextEncoder().encode(str);
 const base64Encoded = btoa(String.fromCharCode(...new Uint8Array(buffer)));
 
@@ -17,7 +15,7 @@ const headers = {
   // Add other headers as needed
 };
 
-async function login (Credentials) {
+async function login(Credentials) {
   try {
     const { data } = await axios.post(baseUrl, Credentials, {
       headers: headers,
@@ -27,6 +25,6 @@ async function login (Credentials) {
   } catch (e) {
     console.log(e);
   }
-};
+}
 
-export default login
+export default login;
