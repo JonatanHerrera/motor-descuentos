@@ -5,7 +5,7 @@ import DiscountList from "../discounts/DiscountList";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./Form.css";
 
-const Form = () => {
+const Form = ({ onLogOut }) => {
   // State to store the input values
   const [document, setDocument] = useState("");
   const [activeBrand, setActiveBrand] = useState();
@@ -29,11 +29,18 @@ const Form = () => {
 
     const userInfo = {
       client: document,
-      brand: activeBrand.marca,
+      brand: activeBrand.brand,
+      mall: activeBrand.mall,
       token: activeBrand.token,
     };
     try {
-      const discounts = await getDiscouts(userInfo);
+      const discounts = await getDiscouts(userInfo);      
+      if (discounts.hasOwnProperty("status")) {
+        alert("La sesión ha caducado, Vuelve a iniciar sesión");
+        onLogOut();
+      } else {
+      }
+
       setDiscountList(discounts);
     } catch (e) {
       console.log(e);
@@ -66,13 +73,12 @@ const Form = () => {
         </form>
       </div>
       <div className="row">
-      <p className="mt-4">
-        Aquí aparecerán los descuentos disponible para el cliente. Recuerda
-        siempre aplicar el mayor de todos.
-      </p>
-
+        <p className="mt-4">
+          Aquí aparecerán los descuentos disponible para el cliente. Recuerda
+          siempre aplicar el mayor de todos.
+        </p>
       </div>
-     
+
       <div className="col mt-5 pt-3 discounts">
         <DiscountList discountList={discountList} />
       </div>

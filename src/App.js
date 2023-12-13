@@ -6,6 +6,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+
   // const [user, setUser] = useState('')
 
   useEffect(() => {
@@ -26,12 +27,12 @@ function App() {
 
   return (
     <div className="container justify-content-center align-items-center d-flex vh-100">
-    {isLoggedIn ? (      
+      {isLoggedIn ? (
         <div>
-          <Form />
+          <Form onLogOut={handleLogOut}/>
           <Logout onLogOut={handleLogOut} />
         </div>
-      ) : (       
+      ) : (
         <Login onSuccessfulLogin={handleSuccessfulLogin} />
       )}
     </div>

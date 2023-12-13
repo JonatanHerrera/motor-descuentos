@@ -25,7 +25,7 @@ const Login = ({ onSuccessfulLogin }) => {
   const handleSubmit = async (event) => {
     event.preventDefault(); // Prevents the default form submission behavior
     const data = {
-      marca: username,
+      username: username,
       password: password,
     };
     try {
@@ -95,10 +95,7 @@ const Login = ({ onSuccessfulLogin }) => {
             </button>
 
           </div>
-        </div>
-        <div className="container">
-        <p className=" mt-4">¿Olvidaste tu contraseña?</p>
-        </div>
+        </div>        
       </form>
     </div>
   );

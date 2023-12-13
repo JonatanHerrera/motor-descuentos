@@ -6,34 +6,36 @@ const buffer = new TextEncoder().encode(str);
 const base64Encoded = btoa(String.fromCharCode(...new Uint8Array(buffer)));
 const authHeader = `Basic ${base64Encoded}`;
 
-const headers = {
-  "Content-Type": "application/json", // Example content type
-  Authorization: authHeader, // Example authorization header
-  // Add other headers as needed
-};
-
 async function getDiscouts(userInfo) {
+  const { client, brand, mall, token } = userInfo;
+  const headers = {
+    "Content-Type": "application/json",
+    Authorization: authHeader,
+    token: token,
+  };
+
   try {
-    const { data } = await axios.post(baseUrl, userInfo, {
+    const payload = { client, brand, mall };
+    const { data } = await axios.post(baseUrl, payload, {
       headers: headers,
     });
-    if (data.length > 0) {
+
+   
+    if (data.length > 0 || data.hasOwnProperty('status') ) {      
       return data;
     } else {
       const R = {
-        Marca: "",
-        Cliente: "",
-        Fecha_Consulta: "",
-        Descuento: "No se encontraron descuentos asociados al cliente",
-        Descripcion_Descuento: "",
+        name: "No hay descuentos aplicables",
+        percentage: "-",
+        description: "Es cliente no aplica para ningun descuento vigente",
+        startDate: "",
+        endDate: "",
+        mall: "",
       };
 
       return [R];
     }
-
-    // Handle the response data here
   } catch (error) {
-    // Handle errors here
     console.error("Error:", error);
   }
 }
