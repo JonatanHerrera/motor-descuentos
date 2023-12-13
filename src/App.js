@@ -3,6 +3,8 @@ import Form from "./components/form/Form.js";
 import Logout from "./components/logout/Logout.js";
 import { useEffect, useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
+import { Helmet } from 'react-helmet';
+import logo from '../src/Images/logo.svg'
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -27,7 +29,12 @@ function App() {
 
   return (
     <div className="container justify-content-center align-items-center d-flex vh-100">
-      {isLoggedIn ? (
+      <Helmet>
+        <title>Motor de descuentos</title>
+        <link rel="icon" type="image/svg+xml" href={logo} />
+      </Helmet>
+      {
+      isLoggedIn ? (
         <div>
           <Form onLogOut={handleLogOut}/>
           <Logout onLogOut={handleLogOut} />

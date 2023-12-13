@@ -48,7 +48,7 @@ const Form = ({ onLogOut }) => {
   };
 
   return (
-    <div className="container ">
+    <div className="container">
       <div className="row">
         <img className="mb-5" src={logo} alt="logo-login" height="100"></img>
       </div>
