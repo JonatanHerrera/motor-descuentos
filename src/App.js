@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Helmet } from 'react-helmet';
 import logo from '../src/Images/logo.svg'
+import './App.css';
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -28,7 +29,7 @@ function App() {
   };
 
   return (
-    <div className="container justify-content-center align-items-center d-flex vh-100">
+    <div className="container principal-Form justify-content-center align-items-center d-flex ">
       <Helmet>
         <title>Motor de descuentos</title>
         <link rel="icon" type="image/svg+xml" href={logo} />
