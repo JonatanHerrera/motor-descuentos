@@ -31,8 +31,7 @@ const Login = ({ onSuccessfulLogin }) => {
     try {
       const newUser = await login(data);
       if (newUser.token !== "") {
-        window.localStorage.setItem("loggedAppUser", JSON.stringify(newUser));
-        //setUser(newUser);
+        window.localStorage.setItem("loggedAppUser", JSON.stringify(newUser));          
         setUsername("");
         setPassword("");
         onSuccessfulLogin();
