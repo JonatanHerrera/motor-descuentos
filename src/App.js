@@ -18,7 +18,7 @@ function App() {
 
   const handleSuccessfulLogin = () => {
     setIsLoggedIn(true);
-    window.location.href = "/main";
+    // window.location.href = "/main";
   };
 
   const handleLogOut = () => {
